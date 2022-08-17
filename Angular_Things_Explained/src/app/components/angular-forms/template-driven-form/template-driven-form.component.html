@@ -1,0 +1,34 @@
+<div class="p-5">
+  <!--  Template Driven Forms  -->
+  <!-- За да не ми гърми с Failed to compile трябва в app.module.ts да си import { FormsModule } from '@angular/forms'; и imports: [FormsModule] -->
+  <form #employeeForm="ngForm" (ngSubmit)="saveEmployee(employeeForm)">
+    <!--Когато Angular види <form> тага автоматично слага директивата ngForm към form елемента-->
+    <div class="panel panel-primary">
+      <!--а ngForm го разглеждаме като обект който носи стойностите на всички контроли във формата и следи за тяхната промяна и ъпдейтва стойностите-->
+      <div class="panel-heading">
+        <h3 class="panel-title">Create Employee</h3>
+      </div>
+      <div class="panel-body">
+        <div class="form-group">
+          <label for="fullName">Full Name</label>
+          <!--ако не е зададен атрибута name в input елемента няма да се следи промяната на value-то му, защото атрибута name се използва за property в ngForm обекта, а като не е зададено няма как да се генерира това пропърти -->
+          <input id="fullName" type="text" class="form-control" name="fn" [(ngModel)]="fullName"/>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input id="email" type="text" class="form-control" name="email" [(ngModel)]="email"/>
+        </div>
+      </div>
+      <div class="panel-footer">
+        <button class="btn btn-primary" type="submit">Save</button>
+        <!--Когато натисна бутона той submit-ва данните от формата и вдига събитие (ngSubmit), което ние байндваме с saveEmployee(employeeForm) метода-->
+      </div>
+    </div>
+  </form>
+  <br />
+
+  <p>EmployeeForm.value:</p>
+  <p>{{ employeeForm.value | json }}</p>
+
+</div>
