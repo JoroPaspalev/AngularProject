@@ -8,13 +8,15 @@ import { AppComponent } from './app.component';
 
 import { LettersWithBlueColorDirective, MyErrorDirective } from './components/directives/create-attribute-directive/my-error-directive';
 import { TemplateDrivenFormComponent } from './components/angular-forms/template-driven-form/template-driven-form.component';
+import { TestComponent } from './components/test/test.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MyErrorDirective,
     LettersWithBlueColorDirective,
-    TemplateDrivenFormComponent
+    TemplateDrivenFormComponent,
+    TestComponent
   ],
   imports: [
     FormsModule,
