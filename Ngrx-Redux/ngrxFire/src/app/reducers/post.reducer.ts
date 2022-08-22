@@ -6,7 +6,7 @@ import { Post } from '../post.model';
 
 // 1. Изграждам си postReducer-a, стигам до initialState за Post обаче нямам още такъв, затова си правя една const
 export function postReducer(state: Post = initialPost, action: Action) {
-  console.log(action.type, state);
+  //console.log(action.type, state);
 
   switch (action.type) {
     case EDIT_TEXT:

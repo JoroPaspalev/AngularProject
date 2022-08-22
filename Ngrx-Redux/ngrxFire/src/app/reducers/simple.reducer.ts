@@ -3,6 +3,7 @@ import {AppState, Dog, MyFormValue, Owner} from '../app.component';
 import { postReducer } from "./post.reducer";
 import { FormGroupState, createFormGroupState, formGroupReducer } from 'ngrx-forms';
 import { Observable } from 'rxjs';
+import { SelectOption } from "../Ngrx-Forms/form/form.component";
 
 
 export const FORM_ID = 'AAABBBCCC';
@@ -10,6 +11,7 @@ export const FORM_ID = 'AAABBBCCC';
 export const initialFormState = createFormGroupState<MyFormValue>(FORM_ID, {
   someTextInput: 'hfdjfsfk',
   someCheckbox: true,
+  selectedOption: 'initial',
   nested: {
     someNumber: 0,
   },
@@ -31,11 +33,21 @@ export function appReducer(state = initialFormState, action: Action): FormGroupS
       state = { ...state, ...myForm };
     }
 
-    console.log(state.controls.someTextInput.value);
+    //console.log(state.controls.someTextInput.value);
 
     switch (action.type) {
       case 'CHANGE':
-        state = { ...state, ...myForm };
+
+         const currentFormState = createFormGroupState<MyFormValue>(FORM_ID, {
+          someTextInput: state.controls.someTextInput.value,
+          someCheckbox: state.controls.someCheckbox.value,
+          selectedOption: (action as SelectOption).payload,
+          nested: {
+            someNumber: state.controls.nested.controls.someNumber.value,
+          },
+        });
+
+        state = currentFormState;
         return state;
 
       default: {
@@ -45,7 +57,7 @@ export function appReducer(state = initialFormState, action: Action): FormGroupS
   }
 
 export function simpleReducer(state: string = 'Hello world' , action: Action){
-    console.log(action.type, state);
+    //console.log(action.type, state);
 
     switch (action.type) {
         case 'SPANISH':
@@ -60,7 +72,7 @@ export function simpleReducer(state: string = 'Hello world' , action: Action){
 }
 
 export function secondReducer(state: string = '0000', action: Action){
-    console.log(action.type, state);
+    //console.log(action.type, state);
 
     switch (action.type) {
         case '1':
@@ -73,7 +85,7 @@ export function secondReducer(state: string = '0000', action: Action){
 }
 
 export function ownerReducer(state: Owner = {name: 'Ivan', city: 'Ruse'}, action: Action){
-    console.log(action.type, state);
+   //console.log(action.type, state);
 
     switch (action.type) {
         case 'CHANGE_NAME':

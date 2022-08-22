@@ -1,20 +1,43 @@
-<p>form works!</p>
 
 
+<div class="main">
+  
 <ng-container *ngIf="formState$ | async as formState">
     
-    <form novalidate [ngrxFormState]="formState">
+  <form novalidate [ngrxFormState]="formState">
+    
+    <p>{{formState.controls.someTextInput.value}}</p>
+    <p>{{formState.controls.someCheckbox.value}}</p>
+    <p>{{formState.controls.nested.controls.someNumber.value}}</p>
 
-      <input type="text" [ngrxFormControlState]="formState.controls.someTextInput"> <br>
-  
-      <input type="checkbox" [ngrxFormControlState]="formState.controls.someCheckbox"> <br>
-  
-      <input type="number"  [ngrxFormControlState]="formState.controls.nested.controls.someNumber"> <br>
-      
-      <!-- <select [ngrxFormControlState] ></select> -->
+    <input type="text" [ngrxFormControlState]="formState.controls.someTextInput"> <br>
 
-    </form>
+    <input type="checkbox" [ngrxFormControlState]="formState.controls.someCheckbox"> <br>
 
-  </ng-container>
+    <input type="number"  [ngrxFormControlState]="formState.controls.nested.controls.someNumber"> <br>
+    
 
-  <button (click)="dispatchBtn()">Dispatch Action</button>
+    <!-- <select [ngrxFormControlState]="(template$ | async)?.controls?.barId">
+      <option *ngFor="let b of (bars$ | async)" [value]="b.id">{{b.label}}</option>
+  </select> -->
+
+<p>Избрания option от select тага e: {{formState.controls.selectedOption.value}}</p>
+  <!-- <select [ngrxFormControlState]="formState.controls.favoriteColor">
+    <option [value]="null"></option>
+    <option *ngFor="let b of (bars$ | async)" [value]="b.id">{{b.label}}</option>
+  </select> -->
+
+
+  <select (change)="optionChange($event)">
+    <!-- <option [value]="null"></option> --> //тук е разковничето
+    <option *ngFor="let o of (options$ | async)" [value]="o.id">{{o.label}}</option>
+  </select>
+
+
+  </form>
+
+</ng-container> <br>
+
+<button (click)="dispatchBtn()">Dispatch Action</button>
+
+</div>

@@ -20,6 +20,7 @@ export interface Dog {
 export interface MyFormValue {
   someTextInput: string;
   someCheckbox: boolean;
+  selectedOption: string;
   nested: {
     someNumber: number;
   };
