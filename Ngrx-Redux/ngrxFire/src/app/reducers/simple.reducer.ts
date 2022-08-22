@@ -1,8 +1,48 @@
 import { Action, ActionReducerMap } from "@ngrx/store";
-import {AppState, Dog, Owner} from '../app.component';
+import {AppState, Dog, MyFormValue, Owner} from '../app.component';
 import { postReducer } from "./post.reducer";
+import { FormGroupState, createFormGroupState, formGroupReducer } from 'ngrx-forms';
+import { Observable } from 'rxjs';
 
 
+export const FORM_ID = 'AAABBBCCC';
+
+export const initialFormState = createFormGroupState<MyFormValue>(FORM_ID, {
+  someTextInput: 'hfdjfsfk',
+  someCheckbox: true,
+  nested: {
+    someNumber: 0,
+  },
+});
+
+export const  initialState: AppState = {
+  message: "",
+  age: "",
+  owner: {name: 'Ivan', city: 'Ruse'},
+  dog: {name: 'Jivaka', age: 23, owner: {name: 'DinkoyBrat', city: 'Moscow'}},
+  post: {text: '', likes: 0},
+  myForm: initialFormState,
+  };
+
+export function appReducer(state = initialFormState, action: Action): FormGroupState<MyFormValue> {
+    const myForm = formGroupReducer(state, action);
+
+    if (myForm !== state) {       
+      state = { ...state, ...myForm };
+    }
+
+    console.log(state.controls.someTextInput.value);
+
+    switch (action.type) {
+      case 'CHANGE':
+        state = { ...state, ...myForm };
+        return state;
+
+      default: {
+        return state;
+      }
+    }
+  }
 
 export function simpleReducer(state: string = 'Hello world' , action: Action){
     console.log(action.type, state);
@@ -69,6 +109,8 @@ export const reducers: ActionReducerMap<AppState> = {
         age: secondReducer,
         owner: ownerReducer,
         dog: dogReducer,
+        myForm: appReducer,
         post: postReducer // 4. Още не сме създали postReducer затова го правим
+
 }
 

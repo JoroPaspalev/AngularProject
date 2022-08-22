@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { Store } from '@ngrx/store';
+import { FormGroupState } from 'ngrx-forms';
 import { Observable } from 'rxjs';
 import { Downvote, EditText, Reset, Upvote } from './post.actions';
 import { Post } from './post.model';
@@ -14,6 +15,14 @@ export interface Dog {
   name: string;
   age: number;
   owner: Owner;
+}
+
+export interface MyFormValue {
+  someTextInput: string;
+  someCheckbox: boolean;
+  nested: {
+    someNumber: number;
+  };
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -37,6 +46,7 @@ export interface AppState {
   owner: Owner;
   dog: Dog;
   post: Post;
+  myForm: FormGroupState<MyFormValue>;
 }
 
 @Component({

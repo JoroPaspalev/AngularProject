@@ -1,0 +1,20 @@
+<p>form works!</p>
+
+
+<ng-container *ngIf="formState$ | async as formState">
+    
+    <form novalidate [ngrxFormState]="formState">
+
+      <input type="text" [ngrxFormControlState]="formState.controls.someTextInput"> <br>
+  
+      <input type="checkbox" [ngrxFormControlState]="formState.controls.someCheckbox"> <br>
+  
+      <input type="number"  [ngrxFormControlState]="formState.controls.nested.controls.someNumber"> <br>
+      
+      <!-- <select [ngrxFormControlState] ></select> -->
+
+    </form>
+
+  </ng-container>
+
+  <button (click)="dispatchBtn()">Dispatch Action</button>
