@@ -12,9 +12,10 @@ import { reducers } from './reducers/simple.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { FormComponent } from './Ngrx-Forms/form/form.component';
+import { VivaNewClientFormComponent } from './Ngrx-Forms/form/viva-new-client-form/viva-new-client-form.component'; 
 
 @NgModule({
-  declarations: [AppComponent, FormComponent],
+  declarations: [AppComponent, FormComponent, VivaNewClientFormComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,    

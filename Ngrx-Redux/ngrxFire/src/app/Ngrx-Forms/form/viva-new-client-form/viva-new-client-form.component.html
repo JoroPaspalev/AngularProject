@@ -1,0 +1,50 @@
+<div class="main">
+    <p class="b">VIVA Form created with bootstrap</p>
+    <form>
+        <div class="form-group">
+            <label class="pb" for="username">Name</label>
+            <input [(ngModel)]="firstname" name="username" type="text" class="form-control" id="username"
+                placeholder="Enter first name">
+            <br>
+        </div>
+        <div class="form-group">
+            <label class="pb" for="lastname">Last name</label>
+            <input [(ngModel)]="lastname" name="lastname" type="text" class="form-control" id="lastname">
+        </div>
+        <div class="form-check">
+            <br>
+            <label class="form-check-label pb" for="newCustomer">Are you a new customer?</label>
+            <input name="newCustomer" [(ngModel)]="isNewCustomer" type="checkbox" id="newCustomer"
+                class="form-check-input" />
+        </div>
+        <br>
+
+        <p class="pb-5px mb-0">Select a Viva plan</p>
+        <div class="ml">
+            <div class="form-check">
+                <input [(ngModel)]="plan.selectedPlan" class="form-check-input" type="radio" name="vivaPlan" id="Radios1" value="option1" checked>
+                <label class="form-check-label" for="Radios1">Viva 10</label>
+            </div>
+            <div class="form-check">
+                <input [(ngModel)]="plan.selectedPlan" class="form-check-input" type="radio" name="vivaPlan" id="Radios2" value="option2">
+                <label class="form-check-label" for="Radios2">Viva 20</label>
+            </div>
+            <div class="form-check">
+                <input [(ngModel)]="plan.selectedPlan" class="form-check-input" type="radio" name="vivaPlan" id="Radios3" value="option3" >
+                <label class="form-check-label" for="Radios3">Viva 30</label>
+            </div>
+    
+        </div>
+        <br>
+        <button type="submit" class="btn btn-info">Submit Form data</button>
+    </form>
+
+    <br><hr>
+    <p>=====Results=====</p>
+    <p>First name: {{firstname}}</p>
+    <p>Last name: {{lastname}}</p>
+    <p>Is the a new customer: {{isNewCustomer}}</p>
+    <p>Selected plan: {{plan.selectedPlan}}</p>
+
+
+</div>

@@ -1,53 +1,59 @@
-<!-- This is for the message and age properties in the Store -->
-<b> message: </b> {{ message$ | async }}
-<br />
-<b> age: </b> {{ ages$ | async }}
+<div class="p">
+  <app-viva-new-client-form></app-viva-new-client-form>
 
-<br />
-<button (click)="spanishMessage()">Spanish</button>
-<br />
-<button (click)="frenchMessage()">French</button>
-
-<br /><br />
-<hr />
-
-<button (click)="changeAgeToOne()">Change age to 1</button> <br />
-<button (click)="changeAgeToTwo()">Change age to 2</button>
-
-<!-- This is for the Owner property in the Store -->
-<br /><br />
-<hr />
-
-{{ owner$ | async | json }}
-<pre> {{ owner$ | async | json }} </pre>
-<!--<pre> идва от pretty-->
-
-<button (click)="changeName()">Change name</button>
-<button (click)="changeCity()">Change City</button>
-
-<!-- This is for the Dog property in the Store -->
-<br /><br />
-<hr />
-
-<pre> {{ dog$ | async | json }} </pre>
-<button (click)="changeDogName()">Change dog name</button>
-
-<!-- This is for the Post property in the Store -->
-<br /><br />
-<hr />
-
-<div *ngIf="post$ | async as p">
-  <p>Post text: {{ p.text }}</p>
-  
-  <p>Votes: {{ p.likes }}</p>
-
-  <input [(ngModel)]="text" type="text" />
+  <!-- This is for the message and age properties in the Store -->
+  <b> message: </b> {{ message$ | async }}
   <br />
-  <button (click)="editText()">Change text</button>
+  <b> age: </b> {{ ages$ | async }}
+
   <br />
-  <button (click)="upVote()">Up vote</button>
-  <button (click)="downVote()">Down vote</button>
-  <button (click)="reset()">Reset vote</button>
+  <button (click)="spanishMessage()">Spanish</button>
+  <br />
+  <button (click)="frenchMessage()">French</button>
+
+  <br /><br />
+  <hr />
+
+  <button (click)="changeAgeToOne()">Change age to 1</button> <br />
+  <button (click)="changeAgeToTwo()">Change age to 2</button>
+
+  <!-- This is for the Owner property in the Store -->
+  <br /><br />
+  <hr />
+
+  {{ owner$ | async | json }}
+  <pre> {{ owner$ | async | json }} </pre>
+  <!--<pre> идва от pretty-->
+
+  <button (click)="changeName()">Change name</button>
+  <button (click)="changeCity()">Change City</button>
+
+  <!-- This is for the Dog property in the Store -->
+  <br /><br />
+  <hr />
+
+  <pre> {{ dog$ | async | json }} </pre>
+  <button (click)="changeDogName()">Change dog name</button>
+
+  <!-- This is for the Post property in the Store -->
+  <br /><br />
+  <hr />
+
+  <div *ngIf="post$ | async as p">
+    <p>Post text: {{ p.text }}</p>
+
+    <p>Votes: {{ p.likes }}</p>
+
+    <input [(ngModel)]="text" type="text" />
+    <br />
+    <button (click)="editText()">Change text</button>
+    <br />
+    <button (click)="upVote()">Up vote</button>
+    <button (click)="downVote()">Down vote</button>
+    <button (click)="reset()">Reset vote</button>
+  </div>
+
+  <app-form></app-form>
+
+
 </div>
-
-<app-form></app-form>
