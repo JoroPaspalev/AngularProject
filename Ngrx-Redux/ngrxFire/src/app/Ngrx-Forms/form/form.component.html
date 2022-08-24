@@ -1,43 +1,52 @@
+<div class="main max-width">
+  <ng-container *ngIf="formState$ | async as formState">
+    <label class="lbl">Form with select</label>
+    <form novalidate [ngrxFormState]="formState"> <!--[ngrxFormState] това идва от ngrxForms-->
+      <input type="text" [ngrxFormControlState]="formState.controls.someTextInput"> <!--[ngrxFormControlState] това идва от ngrxForms-->
+      <span class="pl b">{{formState.controls.someTextInput.value}}</span> <br>
+      <input type="checkbox" [ngrxFormControlState]="formState.controls.someCheckbox"> 
+      <span class="plmax b">{{formState.controls.someCheckbox.value}}</span> <br>
+      <input type="number" [ngrxFormControlState]="formState.controls.nested.controls.someNumber"> 
+      <span class="pl b">{{formState.controls.nested.controls.someNumber.value}}</span> <br>
 
+        <div class="main">
+        <p>Избрания option от select тага e: {{formState.controls.selectedOption.value}}</p>
+        <select (change)="optionChange($event)"> <!--когато не ми сработва [(ngModel)] ползват това за да променя local variable in component class-->
+          <option [value]="null"></option><!-- Когато искаме да не е избрано нито една опция от списъка т.е. така задължаваме User-а да кликне и да избере-->
+          <option *ngFor="let o of (options$ | async)" [value]="o.id">{{o.label}}</option>
+        </select>
+      </div>
 
-<div class="main">
-  
-<ng-container *ngIf="formState$ | async as formState">
-    
-  <form novalidate [ngrxFormState]="formState">
-    
-    <p>{{formState.controls.someTextInput.value}}</p>
-    <p>{{formState.controls.someCheckbox.value}}</p>
-    <p>{{formState.controls.nested.controls.someNumber.value}}</p>
+      <hr>
+      <div class="main">
+        <p>Selected food: {{selectedFruit}}</p>
+        <!-- Задължително трябва да има атрибута name в select, когато използваме [(ngModel)] във <form> -->
+        <select name="select1" [(ngModel)]="selectedFruit">
+          <option *ngFor="let food of (foods$ | async)" [value]="food">{{food}}</option>
+        </select>
+      </div>
 
-    <input type="text" [ngrxFormControlState]="formState.controls.someTextInput"> <br>
+      <hr>
+      <div class="main">
+        <p>Selected food 2: {{selectedFood}}</p>
+        <select name="secondSelect" [(ngModel)]="selectedFood">
+          <ng-container *ngIf="foods$ | async as foods">
+            <option *ngFor="let f of foods" [value]="f">{{f}}</option>
+          </ng-container>
+        </select>
+      </div>
 
-    <input type="checkbox" [ngrxFormControlState]="formState.controls.someCheckbox"> <br>
+      <button (click)="save()">Save Form data</button>
+    </form>
+  </ng-container>
 
-    <input type="number"  [ngrxFormControlState]="formState.controls.nested.controls.someNumber"> <br>
-    
+  <br>
+  <hr>
 
-    <!-- <select [ngrxFormControlState]="(template$ | async)?.controls?.barId">
-      <option *ngFor="let b of (bars$ | async)" [value]="b.id">{{b.label}}</option>
-  </select> -->
-
-<p>Избрания option от select тага e: {{formState.controls.selectedOption.value}}</p>
-  <!-- <select [ngrxFormControlState]="formState.controls.favoriteColor">
-    <option [value]="null"></option>
-    <option *ngFor="let b of (bars$ | async)" [value]="b.id">{{b.label}}</option>
-  </select> -->
-
-
-  <select (change)="optionChange($event)">
-    <!-- <option [value]="null"></option> --> //тук е разковничето
-    <option *ngFor="let o of (options$ | async)" [value]="o.id">{{o.label}}</option>
-  </select>
-
-
-  </form>
-
-</ng-container> <br>
-
-<button (click)="dispatchBtn()">Dispatch Action</button>
-
+  <div *ngIf="isFormSubmitted">
+    <p>You sent this data to the Store: </p>
+    <p>{{selectedOption}}</p>
+    <p>{{selectedFruit}}</p>
+    <p>{{selectedFood}}</p>
+  </div>
 </div>

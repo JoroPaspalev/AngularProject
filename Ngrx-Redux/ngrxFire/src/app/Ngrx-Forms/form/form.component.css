@@ -6,3 +6,26 @@
     margin-top:20px;
     margin-bottom:  20px;
 }
+
+.lbl {
+    padding-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 2rem;
+    display: block;
+}
+
+.max-width {
+    max-width: 20%;
+}
+.pl {
+    padding-left: 20px;
+}
+
+.plmax {
+    padding-left: 170px;
+}
+
+.b {
+    font-weight: bold;
+}
