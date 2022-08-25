@@ -71,7 +71,7 @@
         </div>
 
         <div *ngIf="isLeasingDevice">
-            <app-leasing (markChangeEventEmitter)="selectedMarkOptionChanged($event)"></app-leasing>
+            <app-leasing (markChangeEventEmitter)="selectedMarkOptionChanged($event)" (modelChangeEventEmmiter)="modelChangeEventEmmiter($event)"></app-leasing>
         </div>
 
 
@@ -88,7 +88,9 @@
     <p>Selected plan: {{plan.selectedPlan}}</p>
     <p>Selected extra MB: {{selectedExtraMB}}</p>
     <p>Leasing device checked: {{isLeasingDevice}}</p>
-    <p *ngIf="isLeasingDevice">Selected mark: {{mark}}</p>
-
+    <div *ngIf="isLeasingDevice">
+        <p >Selected mark: <i><b> {{mark}} </b></i> </p>
+        <p >Selected model: <i><b> {{model}} </b></i></p>
+    </div>
 
 </div>

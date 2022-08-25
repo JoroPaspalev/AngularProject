@@ -18,8 +18,7 @@ export class VivaNewClientFormComponent implements OnInit {
   isLeasingDevice: boolean = false;
 
   mark: string = 'initial';
-
-
+  model: string = 'no model selected;';
 
   constructor() { }
 
@@ -30,6 +29,9 @@ export class VivaNewClientFormComponent implements OnInit {
     this.mark = mark;
   }
 
+  modelChangeEventEmmiter(model: string){
+    this.model = model;
+  }
 
 }
 

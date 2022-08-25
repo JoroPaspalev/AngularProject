@@ -15,8 +15,8 @@
 <p class="pb-5px mb-0">Choose a model</p>
 <div class="row">
     <div class="col-12">
-        <select name="model" [(ngModel)]="selectedModel" class="form-select" aria-label="model">           
-                <option *ngFor="let model of filteredModels" value="o.model">{{model.model}}</option>                  
+        <select name="model" [(ngModel)]="selectedModel" (change)="modelChange()" class="form-select" aria-label="model">           
+                <option *ngFor="let model of filteredModels" [value]="model.model">{{model.model}}</option>                  
         </select>
     </div>
 </div>

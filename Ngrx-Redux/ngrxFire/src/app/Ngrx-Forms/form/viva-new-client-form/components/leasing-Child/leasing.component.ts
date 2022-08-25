@@ -12,16 +12,14 @@ export class LeasingComponent implements OnInit, OnDestroy {
   filteredModels: Model[] = [];
   
   @Output() markChangeEventEmitter = new EventEmitter<string>();  
+  @Output() modelChangeEventEmmiter = new EventEmitter<string>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
-
   
-
-  selectedMarkChanged(){
-   
+  selectedMarkChanged(){   
 
     switch (this.selectedMark.toUpperCase()) {
       case 'SAMSUNG':
@@ -42,7 +40,6 @@ export class LeasingComponent implements OnInit, OnDestroy {
       default:
         break;
     }
-
     this.markChangeEventEmitter.emit(this.selectedMark);
   }
 
@@ -50,10 +47,14 @@ export class LeasingComponent implements OnInit, OnDestroy {
     this.filteredModels = this.models.filter(m => m.mark === mark);
   }
 
+  modelChange(){
+    this.modelChangeEventEmmiter.emit(this.selectedModel);
+  }
 
   ngOnDestroy(): void {
     console.log('leasing was destroyed');
     this.markChangeEventEmitter.emit('');
+    this.modelChangeEventEmmiter.emit('');
   }
 
   models: Model[] = [

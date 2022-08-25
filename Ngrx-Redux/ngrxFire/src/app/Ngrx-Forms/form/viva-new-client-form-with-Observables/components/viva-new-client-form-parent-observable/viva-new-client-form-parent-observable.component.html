@@ -1,0 +1,91 @@
+
+<div class="main">
+    <p class="b">VIVA Form created with bootstrap and <span class="red"> Observables </span></p>
+    <form>
+        <div class="form-group">
+            <label class="pb" for="username1">Name</label>
+            <input [(ngModel)]="firstname" name="username1" type="text" class="form-control" id="username1"
+                placeholder="Enter first name">
+            <br>
+        </div>
+        <div class="form-group">
+            <label class="pb" for="lastname1">Last name</label>
+            <input [(ngModel)]="lastname" name="lastname1" type="text" class="form-control" id="lastname1">
+        </div>
+        <div class="form-check">
+            <br>
+            <label class="form-check-label pb" for="newCustomer1">Are you a new customer?</label>
+            <input name="newCustomer1" [(ngModel)]="isNewCustomer" type="checkbox" id="newCustomer1" class="form-check-input" />
+        </div>
+        <br>
+
+        <p class="pb-5px mb-0">Select a Viva plan</p>
+        <div class="ml">
+            <div *ngIf="vivaPlans$ | async as vivaPlans">        
+                <div *ngFor="let p of vivaPlans">
+                    <div class="form-check">
+                        <input [(ngModel)]="plan.selectedPlan" class="form-check-input" type="radio" name="vivaPlanObs" [id]="p"
+                            [value]="p">
+                        <label class="form-check-label" [for]="p">{{p}}</label>
+                    </div>
+                </div>        
+            </div>        
+        </div>
+        
+        <br>
+
+        <p class="pb-5px mb-0">Additional MBs</p>
+        <div *ngIf="megabytes$ | async as megabytes"> <!--Този DIV ми прави само scope в който имам достъп до Observable променливата-->     
+            <div class="row">
+                <div class="col-12">
+                    <select name="extraMBObs" [(ngModel)]="selectedExtraMB" class="form-select" aria-label="Default sddddddle">
+                        <option *ngFor="let mb of megabytes" [value]="mb.id">{{mb.quantity}}</option>
+                    </select>
+                </div>
+            </div>
+            <br>
+        </div>
+
+        <div *ngIf="additionalSMS$ | async as additionalSMS">
+            <p class="pb-5px mb-0">Additional SMS</p>
+            <div class="row">
+                <div class="col-12">
+                    <select name="extraSMS" [(ngModel)]="selectedExtraSMS" class="form-select" aria-label="Default select example">
+                       <option *ngFor="let sms of additionalSMS" [value]="sms.id">{{sms.quantity}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-check">
+            <br>
+            <input name="leasingDeviceObs" [(ngModel)]="isLeasingDevice" type="checkbox" id="leasingDeviceObs" class="form-check-input" />
+            <label class="form-check-label pb" for="leasingDeviceObs">Do you want a leasing device?</label>
+        </div>
+
+        <div *ngIf="isLeasingDevice">
+            <app-leasing (markChangeEventEmitter)="selectedMarkOptionChanged($event)" (modelChangeEventEmmiter)="modelChangeEventEmmiter($event)"></app-leasing>
+        </div>
+
+
+        <br>
+        <button type="submit" class="btn btn-info">Submit Form data</button>
+    </form>
+
+    <br>
+    <hr>
+    <p>=====Results=====</p>
+    <p>First name: {{firstname}}</p>
+    <p>Last name: {{lastname}}</p>
+    <p>Is the a new customer: {{isNewCustomer}}</p>
+    <p>Selected plan: {{plan.selectedPlan}}</p>
+    <p>Selected extra MB: {{selectedExtraMB}}</p>
+    <p>Leasing device checked: {{isLeasingDevice}}</p>
+    <div *ngIf="isLeasingDevice">
+        <p >Selected mark: <i><b> {{mark}} </b></i> </p>
+        <p >Selected model: <i><b> {{model}} </b></i></p>
+    </div>
+    
+
+
+</div>
