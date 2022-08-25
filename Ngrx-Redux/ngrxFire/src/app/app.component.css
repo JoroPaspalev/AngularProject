@@ -1,3 +1,10 @@
 .p {
     padding: 20px;
 }
+
+.main {
+    border: solid 1px rgba(223, 223, 228, 0.216);
+    padding: 20px;
+    border-radius: 8px;
+    margin: 0px;
+}

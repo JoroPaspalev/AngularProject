@@ -10,9 +10,14 @@ export class VivaNewClientFormComponent implements OnInit {
   firstname: string = "";
   lastname: string = "";
   isNewCustomer: boolean = false;
+  selectedExtraMB: string = 'Select extra Megabytes here';
+  selectedExtraSMS: string = '';
   plan: Plan = {
     selectedPlan: ''
   }
+  isLeasingDevice: boolean = false;
+
+  mark: string = 'initial';
 
 
 
@@ -21,6 +26,9 @@ export class VivaNewClientFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  selectedMarkOptionChanged(mark: string){
+    this.mark = mark;
+  }
 
 
 }

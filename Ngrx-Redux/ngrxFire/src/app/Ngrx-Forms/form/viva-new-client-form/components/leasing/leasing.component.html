@@ -1,0 +1,22 @@
+
+<p class="pb-5px mb-0">Choose a trade mark</p>
+<div class="row">
+    <div class="col-12">
+        <select name="mark" [(ngModel)]="selectedMark" (change)="selectedMarkChanged()" class="form-select" aria-label="mark mark mark">
+            <option value="Samsung">Samsung</option>
+            <option value="iPhone">iPhone</option>
+            <option value="Sony">Sony</option>
+            <option value="Huawei">Huawei</option>
+            <option value="Xiaomi">Xiaomi</option>
+        </select>
+    </div>
+</div>
+
+<p class="pb-5px mb-0">Choose a model</p>
+<div class="row">
+    <div class="col-12">
+        <select name="model" [(ngModel)]="selectedModel" class="form-select" aria-label="model">           
+                <option *ngFor="let model of filteredModels" value="o.model">{{model.model}}</option>                  
+        </select>
+    </div>
+</div>
