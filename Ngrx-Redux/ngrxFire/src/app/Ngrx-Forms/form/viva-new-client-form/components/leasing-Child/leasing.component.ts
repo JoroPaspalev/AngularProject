@@ -1,4 +1,7 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/app.component';
+import { MarkChangeAction, MARK_CHANGE } from '../../../viva-new-client-form-with-Store/components/actions/viva-actions';
 
 @Component({
   selector: 'app-leasing',
@@ -14,7 +17,7 @@ export class LeasingComponent implements OnInit, OnDestroy {
   @Output() markChangeEventEmitter = new EventEmitter<string>();  
   @Output() modelChangeEventEmmiter = new EventEmitter<string>();
 
-  constructor() { }
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
   }
@@ -41,6 +44,10 @@ export class LeasingComponent implements OnInit, OnDestroy {
         break;
     }
     this.markChangeEventEmitter.emit(this.selectedMark);
+
+    // Сега промени Store variable currentSelectedMark т.е. Dispatch action
+    this.store.dispatch(new MarkChangeAction(this.selectedMark));
+
   }
 
   filterByMark(mark: string): void {

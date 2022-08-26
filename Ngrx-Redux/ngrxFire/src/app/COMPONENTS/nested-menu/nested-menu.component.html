@@ -1,0 +1,53 @@
+<p>nested-menu works!</p>
+
+<div *ngIf="commentInput">{{commentInput}}</div>
+
+<button mat-button [matMenuTriggerFor]="column">Column header click</button>
+<mat-menu #column >
+  <button mat-menu-item [matMenuTriggerFor]="selected">Selected</button>
+  <button mat-menu-item [matMenuTriggerFor]="filtered">Filtered</button>
+</mat-menu>
+
+<mat-menu #selected >
+  <button mat-menu-item [matMenuTriggerFor]="state">State</button>
+  <button mat-menu-item [matMenuTriggerFor]="QCStatus">QCStatus</button>
+  <button mat-menu-item [matMenuTriggerFor]="comment">Comment</button>
+</mat-menu>
+
+<mat-menu #filtered >
+  <button mat-menu-item>Insects</button>
+  <button mat-menu-item>Molluscs</button>
+  <button mat-menu-item>Crustaceans</button>
+  <button mat-menu-item>Corals</button>
+  <button mat-menu-item>Arachnids</button>
+  <button mat-menu-item>Velvet worms</button>
+  <button mat-menu-item>Horseshoe crabs</button>
+</mat-menu>
+
+<mat-menu #state >
+  <button mat-menu-item>State 1</button>
+  <button mat-menu-item>State 2</button>
+  <button mat-menu-item>State 3</button>
+</mat-menu>
+
+<mat-menu #QCStatus>
+  <button mat-menu-item>Passed</button>
+  <button mat-menu-item>Return for review</button>
+  <button mat-menu-item>Errors</button>
+  <button mat-menu-item>In progress</button>
+</mat-menu>
+
+<mat-menu #comment>
+  <label class="pl-20" for="comment">Enter a comment:</label>
+  <!-- <input [(ngModel)]="commentInput" class="comment-b" mat-menu-item type="text" id="comment"> -->
+
+  <textarea [(ngModel)]="commentInput" class="comment-b" rows = "5" cols = "60" name = "description"  id="comment" (click)="stopEvent($event)">
+   
+ </textarea><br>
+
+  <button mat-menu-item class="in ml-20" (click)="save()">Save</button>
+  <button mat-menu-item class="in" (click)="cancel()" >Cancel</button>
+</mat-menu>
+
+
+

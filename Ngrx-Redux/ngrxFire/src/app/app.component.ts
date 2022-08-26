@@ -48,6 +48,7 @@ export interface AppState {
   dog: Dog;
   post: Post;
   myForm: FormGroupState<MyFormValue>;
+  currentSelectedMark: string;
 }
 
 @Component({

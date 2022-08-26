@@ -9,16 +9,23 @@ import { StoreModule } from '@ngrx/store';
 import { NgrxFormsModule } from 'ngrx-forms'; 
 import { reducers } from './reducers/simple.reducer';
 
+// Angular material
+import {MatMenuModule} from '@angular/material/menu';
+import { MatButtonModule} from '@angular/material/button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { FormComponent } from './Ngrx-Forms/form/form.component';
 import { VivaNewClientFormComponent } from './Ngrx-Forms/form/viva-new-client-form/components/viva-new-client-form-Parent/viva-new-client-form.component';
 import { LeasingComponent } from './Ngrx-Forms/form/viva-new-client-form/components/leasing-Child/leasing.component';
 import { VivaNewClientFormParentObservableComponent } from './Ngrx-Forms/form/viva-new-client-form-with-Observables/components/viva-new-client-form-parent-observable/viva-new-client-form-parent-observable.component';
+import { VivaNewClientFormParentStoreComponent } from './Ngrx-Forms/form/viva-new-client-form-with-Store/components/viva-new-client-form-parent-store/viva-new-client-form-parent-store.component';
+import { NestedMenuComponent } from './COMPONENTS/nested-menu/nested-menu.component';
 
 
 @NgModule({
-  declarations: [AppComponent, FormComponent, VivaNewClientFormComponent, LeasingComponent, VivaNewClientFormParentObservableComponent],
+  declarations: [AppComponent, FormComponent, VivaNewClientFormComponent, LeasingComponent, VivaNewClientFormParentObservableComponent, VivaNewClientFormParentStoreComponent, NestedMenuComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,    
@@ -28,7 +35,10 @@ import { VivaNewClientFormParentObservableComponent } from './Ngrx-Forms/form/vi
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
-    FormsModule,
+    FormsModule, 
+    MatMenuModule,
+    MatButtonModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

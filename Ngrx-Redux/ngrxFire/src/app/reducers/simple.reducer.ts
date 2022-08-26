@@ -4,6 +4,7 @@ import { postReducer } from "./post.reducer";
 import { FormGroupState, createFormGroupState, formGroupReducer } from 'ngrx-forms';
 import { Observable } from 'rxjs';
 import { SelectOption } from "../Ngrx-Forms/form/form.component";
+import { vivaReducer } from "../Ngrx-Forms/form/viva-new-client-form-with-Store/components/reducers/viva-reducer";
 
 
 export const FORM_ID = 'AAABBBCCC';
@@ -16,15 +17,6 @@ export const initialFormState = createFormGroupState<MyFormValue>(FORM_ID, {
     someNumber: 0,
   },
 });
-
-export const  initialState: AppState = {
-  message: "",
-  age: "",
-  owner: {name: 'Ivan', city: 'Ruse'},
-  dog: {name: 'Jivaka', age: 23, owner: {name: 'DinkoyBrat', city: 'Moscow'}},
-  post: {text: '', likes: 0},
-  myForm: initialFormState,
-  };
 
 export function appReducer(state = initialFormState, action: Action): FormGroupState<MyFormValue> {
     const myForm = formGroupReducer(state, action);
@@ -122,7 +114,7 @@ export const reducers: ActionReducerMap<AppState> = {
         owner: ownerReducer,
         dog: dogReducer,
         myForm: appReducer,
-        post: postReducer // 4. Още не сме създали postReducer затова го правим
-
+        post: postReducer, // 4. Още не сме създали postReducer затова го правим
+        currentSelectedMark: vivaReducer
 }
 
