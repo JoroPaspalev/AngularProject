@@ -23,13 +23,16 @@ import { LeasingComponent } from './Ngrx-Forms/form/viva-new-client-form/compone
 import { VivaNewClientFormParentObservableComponent } from './Ngrx-Forms/form/viva-new-client-form-with-Observables/components/viva-new-client-form-parent-observable/viva-new-client-form-parent-observable.component';
 import { VivaNewClientFormParentStoreComponent } from './Ngrx-Forms/form/viva-new-client-form-with-Store/components/viva-new-client-form-parent-store/viva-new-client-form-parent-store.component';
 import { NestedMenuComponent } from './COMPONENTS/nested-menu/nested-menu.component';
+import { AgGridModule } from 'ag-grid-angular';
+import { MyCellComponent } from './COMPONENTS/my-cell/my-cell.component';
 
 
 @NgModule({
-  declarations: [AppComponent, FormComponent, VivaNewClientFormComponent, LeasingComponent, VivaNewClientFormParentObservableComponent, VivaNewClientFormParentStoreComponent, NestedMenuComponent],
+  declarations: [AppComponent, FormComponent, VivaNewClientFormComponent, LeasingComponent, VivaNewClientFormParentObservableComponent, VivaNewClientFormParentStoreComponent, NestedMenuComponent, MyCellComponent],
   imports: [
     BrowserModule,
-    AppRoutingModule,    
+    AppRoutingModule, 
+    AgGridModule,   
     NgrxFormsModule,
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({
