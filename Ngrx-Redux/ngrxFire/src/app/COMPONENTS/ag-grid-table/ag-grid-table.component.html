@@ -1,0 +1,21 @@
+<div class="wrapper">
+    <p>ag-grid-table works!</p>
+
+    <button class="btn btn-danger" (click)="myGrid.api.deselectAll()">Clear Selection</button> <!-- button-а има достъп до template ref #myGrid а тя ми дава достъп до api и неговите функции-->
+    <br> <br>
+    <div class="border">
+        <ag-grid-angular #myGrid class="ag-theme-balham" style="height: 500px; width: 100%"
+        [rowData]="rowData | async" 
+        [columnDefs]="colDefs"
+        [defaultColDef]="defaultColDef"
+        (gridReady)="onGridReady($event)" 
+        (cellClicked)="cellClick($event)"    
+        (selectionChanged)="selectionChanged($event)"
+        [rowSelection]="'multiple'"
+        [frameworkComponents]="frameworkComponents"
+    
+        >
+        </ag-grid-angular>
+    </div>
+    
+</div>

@@ -7,25 +7,24 @@ import { ICellRendererParams } from 'ag-grid-community';
   templateUrl: './my-cell.component.html',
   styleUrls: ['./my-cell.component.css']
 })
-export class MyCellComponent implements OnInit, ICellRendererAngularComp {
+export class MyCellComponent implements OnInit, ICellRendererAngularComp  {
 
     value: any;
 
-
   constructor() { }
-  agInit(params: ICellRendererParams<any, any>): void {
+ 
+  agInit(params: ICellRendererParams): void {
     this.value = params.value;
     console.log(params.data);
   }
-  refresh(params: ICellRendererParams<any, any>): boolean {
+
+  refresh(params: ICellRendererParams): boolean {
     return false;
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   click(event: any){
       alert('Cell value is ' + this.value);
   }
-
 }

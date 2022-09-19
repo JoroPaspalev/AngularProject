@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
+import { AgGridModule } from 'ag-grid-angular';
 import { AppComponent } from './app.component';
 
 import { StoreModule } from '@ngrx/store';
@@ -23,28 +24,37 @@ import { LeasingComponent } from './Ngrx-Forms/form/viva-new-client-form/compone
 import { VivaNewClientFormParentObservableComponent } from './Ngrx-Forms/form/viva-new-client-form-with-Observables/components/viva-new-client-form-parent-observable/viva-new-client-form-parent-observable.component';
 import { VivaNewClientFormParentStoreComponent } from './Ngrx-Forms/form/viva-new-client-form-with-Store/components/viva-new-client-form-parent-store/viva-new-client-form-parent-store.component';
 import { NestedMenuComponent } from './COMPONENTS/nested-menu/nested-menu.component';
-import { AgGridModule } from 'ag-grid-angular';
 import { MyCellComponent } from './COMPONENTS/my-cell/my-cell.component';
-
+import { AnchorComponent } from './COMPONENTS/anchor/anchor.component';
+import { SelectAllComponent } from './COMPONENTS/select-all/select-all.component';
+import { AgGridTableComponent } from './COMPONENTS/ag-grid-table/ag-grid-table.component';
+import { HttpClientModule} from '@angular/common/http';
+import { GridComponent } from './COMPONENTS/grid/grid.component';
+import { IconComponent } from './COMPONENTS/icon/icon.component';
+import {MatIconModule} from '@angular/material/icon';
+import { DynamicallyAddPropertiesToTypeScriptObjectsComponent } from './COMPONENTS/dynamically-add-properties-to-type-script-objects/dynamically-add-properties-to-type-script-objects.component';
 
 @NgModule({
-  declarations: [AppComponent, FormComponent, VivaNewClientFormComponent, LeasingComponent, VivaNewClientFormParentObservableComponent, VivaNewClientFormParentStoreComponent, NestedMenuComponent, MyCellComponent],
   imports: [
     BrowserModule,
+    FormsModule, 
+    HttpClientModule,
+    AgGridModule.withComponents([MyCellComponent, IconComponent]),
     AppRoutingModule, 
-    AgGridModule,   
     NgrxFormsModule,
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
-    FormsModule, 
     MatMenuModule,
     MatButtonModule,
     BrowserAnimationsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatIconModule
   ],
+  declarations: [AppComponent, FormComponent, VivaNewClientFormComponent, LeasingComponent, VivaNewClientFormParentObservableComponent, 
+    VivaNewClientFormParentStoreComponent, NestedMenuComponent, MyCellComponent, AnchorComponent, SelectAllComponent, AgGridTableComponent, GridComponent, IconComponent, DynamicallyAddPropertiesToTypeScriptObjectsComponent],
   providers: [],
   bootstrap: [AppComponent],
 })

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { Store } from '@ngrx/store';
-import { CellClickedEvent, ColDef } from 'ag-grid-community';
+import { CellClickedEvent, ColDef, SelectionChangedEvent } from 'ag-grid-community';
 import { FormGroupState } from 'ngrx-forms';
 import { Observable } from 'rxjs';
 import { MyCellComponent } from './COMPONENTS/my-cell/my-cell.component';
@@ -67,19 +67,6 @@ export class AppComponent {
   dog$: Observable<Dog> = new Observable<Dog>();
   post$: Observable<Post> = new Observable<Post>();
   text: string = '';
-
-  // This is for Ag-Grid-Angular Library
-  rowData: any[] = [
-    { make: 'Toyota',  model: 'Acura',price: 23000},
-    { make: 'Mercedes',  model: 'S500',price: 93000},
-    { make: 'BMW',  model: '5 seria',price: 55000},
-    { make: 'Opel',  model: 'Corsa',price: 8000},
-  ];
-  colDefs: ColDef[] = [
-    { field: 'make', sortable: true, filter: true},
-    { field: 'model', cellRenderer: MyCellComponent},
-    { field: 'price', cellRenderer: MyCellComponent},
-  ];
 
   cellClick(event: CellClickedEvent){
       console.log(event);
