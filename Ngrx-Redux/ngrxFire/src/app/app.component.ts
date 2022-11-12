@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 
 import { Store } from '@ngrx/store';
+import { CellClickedEvent, ColDef, SelectionChangedEvent } from 'ag-grid-community';
 import { FormGroupState } from 'ngrx-forms';
 import { Observable } from 'rxjs';
+import { MyCellComponent } from './COMPONENTS/my-cell/my-cell.component';
 import { Downvote, EditText, Reset, Upvote } from './post.actions';
 import { Post } from './post.model';
 
@@ -65,6 +67,10 @@ export class AppComponent {
   dog$: Observable<Dog> = new Observable<Dog>();
   post$: Observable<Post> = new Observable<Post>();
   text: string = '';
+
+  cellClick(event: CellClickedEvent){
+      console.log(event);
+  }
 
   constructor(private store: Store<AppState>) {
     this.message$ = this.store.select('message');

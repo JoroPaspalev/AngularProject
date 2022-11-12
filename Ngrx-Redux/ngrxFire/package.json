@@ -22,6 +22,8 @@
     "@angular/router": "^14.1.0",
     "@ngrx/store": "^14.1.0",
     "@ngrx/store-devtools": "^14.2.0",
+    "ag-grid-angular": "^21.2.0",
+    "ag-grid-community": "^21.2.0",
     "ngrx-forms": "^7.0.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",

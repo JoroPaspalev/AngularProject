@@ -1,0 +1,16 @@
+        <div
+			#anchorRef
+			(mousedown)="handleMousedown( $event )"
+			class="anchor"
+			[style.left.px]="anchorPosition.left"
+			[style.top.px]="anchorPosition.top">
+			Drag Me
+		</div>
+		<div
+			#popupRef
+			class="popup"
+			[class.is-constrained]="isConstrained"
+			[style.left.px]="popupPosition.left"
+			[style.top.px]="popupPosition.top">
+			<br />
+		</div>

@@ -1,0 +1,11 @@
+.wrapper {
+    border: 1px solid grey;
+    background-color: rgb(248, 246, 246);
+    padding: 20px;
+}
+
+.border {
+    border: 8px solid green;
+    width: 800px;    
+}
+

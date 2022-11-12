@@ -23,9 +23,19 @@ export class NestedMenuComponent implements OnInit {
   }
 
   stopEvent(event: Event){
-    // Така ще се спре клик събитието
     event.preventDefault(); 
     event.stopPropagation();
+  }
+
+  keyFunc(event: KeyboardEvent){
+
+    console.log(event.key);
+
+    if (event.key.toLocaleLowerCase() === "s" || event.key.toLowerCase() === "c") {
+      event.preventDefault();
+      event.stopPropagation();     
+    }
+    return false;
   }
 
 }
