@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { User } from './components/table/table.component';
@@ -17,7 +17,17 @@ export class HeroService {
   }
 
   getData(userId: number): Observable<User[]>{
-    return this.httpClient.get<User[]>(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`);
+    
+    // const objectWithHeaders = new HttpHeaders('Authorization: Bearertoken'); // Това задава само един header
+    const objectWithHeaders = new HttpHeaders({'MyCustomHeader': 'Info here' + 'token', 'JP-Type': ' app/json-meison'});// Това задава повече от един Header
+    const requestOptions = { headers: objectWithHeaders};
+    const dd = objectWithHeaders.keys();
+    console.log(objectWithHeaders.has('MyCustomHeader'));
+    console.log(objectWithHeaders.get('MyCustomHeader'));
+    console.log(dd);
+
+
+    return this.httpClient.get<User[]>(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`, requestOptions);
   } 
 
 }

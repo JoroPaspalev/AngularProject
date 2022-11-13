@@ -38,8 +38,8 @@ export class TableComponent implements OnInit {
     this.heroService.getData(1)
       .subscribe(response => {
         console.log(response)
-        //this.dataSource = response;
-        // this.table?.renderRows();
+        this.dataSource = response;
+        //this.table?.renderRows();
       });
   }  
 }

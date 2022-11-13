@@ -14,6 +14,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { HomeComponent } from './home/home.component';
 import { TableComponent } from './components/table/table.component';
 import { MatTableModule } from '@angular/material/table';
+import { Table1Component } from './components/table1/table1.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { MatTableModule } from '@angular/material/table';
     DashboardComponent,
     PageNotFoundComponent,
     HomeComponent,
-    TableComponent
+    TableComponent,
+    Table1Component
   ],
   imports: [
     BrowserModule,
