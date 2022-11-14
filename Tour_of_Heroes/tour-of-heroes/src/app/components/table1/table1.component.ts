@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { MatTable } from '@angular/material/table';
 import { HeroService } from 'src/app/hero.service';
 import { User } from '../table/table.component';
 
@@ -8,9 +9,11 @@ import { User } from '../table/table.component';
   styleUrls: ['./table1.component.css']
 })
 export class Table1Component implements OnInit {
+  @ViewChild('table') table: MatTable<Element> | undefined;
 
+  @Input('dataSource') dataSource: User[] = [{ 'userId': 111, "id": 12, 'title': 'initial data state', 'body': 'body text' }];
   displayedColumns: string[] = ['userId', 'id', 'title', 'body'];
-  dataSource: User[] = [{'userId': 111, "id": 12, 'title': 'initial data state', 'body': 'body text'}];
+  //dataSource: User[] = [{'userId': 111, "id": 12, 'title': 'initial data state', 'body': 'body text'}];
 
   constructor(private heroService: HeroService) { }
 
@@ -20,8 +23,8 @@ export class Table1Component implements OnInit {
     .subscribe(data => {
       console.log(data);
       this.dataSource = data;
-      //this.table?.renderRows();
-    }); 
+      this.table?.renderRows();
+    });
   }
 
 }

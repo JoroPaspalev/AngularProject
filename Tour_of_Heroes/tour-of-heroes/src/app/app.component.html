@@ -1,15 +1,27 @@
 <h1>{{title}}</h1>
 
+<h1>{{timeoutData}}</h1>
+
+
+
+<div class="timer">
+  <p class="small">app was started before:</p>
+  <h2>{{time}}</h2>
+  <p class="small">I was started 3 second after:</p>
+  <p class="small">and Emit every next value after 3 sec delay:</p>
+  <h2>{{secondAfterSomeDelay}}</h2>
+</div>
+
 <nav>
     <a routerLink="/dashboard" >Dashboard</a>
     <a routerLink="/heroes">Heroes</a>
 </nav>
 
+<button type="button" (click)="btnClick()">Change User Id = 1</button>
 
-
-<app-table></app-table>
+<app-table [dataSource]="dataForTable"></app-table>
 <br>
-<app-table1></app-table1>
+<app-table1 [dataSource]="dataForTable1"></app-table1>
 
 <router-outlet></router-outlet>
 <hr>
