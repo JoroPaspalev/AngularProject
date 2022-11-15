@@ -13,16 +13,37 @@
 </div>
 
 <nav>
+  <!-- Това е просто един <a> tag, но вместо да не извиква неговия атрибут href="" и той да води към реален URL адрес (google.com),
+    той се обръща чрез директивата routerLink към Router service, който е Singleton за целия app. Този Router service проверява в регистрираните
+     си адерси дали има компонент срещу тази адрес - ако има го инстанцира и започваме да го виждаме на екрана. Къде обаче се показва този компонент?
+     След като Angular създаде компонента съответстващ на този адрес търси къде в html кода сме сложили <router-outlet> taga, изтрива го и на негово
+      място слага новосъздадения компонент. -->
+    <a routerLink="/home">Go home</a>
     <a routerLink="/dashboard" >Dashboard</a>
     <a routerLink="/heroes">Heroes</a>
+    <a routerLink="/jp">jp route -call message Component</a>
 </nav>
 
 <button type="button" (click)="btnClick()">Change User Id = 1</button>
+
+<!-- Когато сменим от една страница на друга - напр: от localhost:4200 на localhost:4200/heroes какво се случва. Angular трябва да преизчертае всичко на ново.
+Взема app.component.html и започва да рисува по него - първи ред, втори ред ..... и стига до <router-outlet> tag и тука си вика, хм, това пък как трябва да го рисувам,
+в html нямам такъв таг. Добре но аз имам инстанциран един Router service който ми казва че в момента избрания път е /heroes а пък за този path ми е регистриран HeroComponent,
+аха значи на мястото на <router-outlet> трябва да изчертая този компонент. Изчертавам го и продължавам на долу със следващото което е за рисуване -->
+<router-outlet></router-outlet>
+
+<!-- Когато привключа от една страница на друга Angular изчертава на ново всички компоненти. Добре - идвам от адрес localhost:4200/heroes където текущо са изрисувани
+app.component.html като parent и hero.component.html като child (нарисуван на мястото на <router-outlet>) и сега сменям на localhost:4200/home. В този момент angular
+унищожава и двата app.component.html, както и неговия child hero.component.html и ги пресъздава на ново само че на мястото на <router-outlet> взема новия посочен адрес и
+асоцирания към него компонент и инстанцира него (home.component.html на мястото на hero.component.html)  -->
+
+<!-- Накратко - Кога се Distroy-ва един component - когато не трябва да бъде изрисуван на екрана. Напр: на localhost:4200 сме и сме изчертали app.component.html (parent)
+и home.component.html (child). Превключваме на localhost:4200/heroes, където трябва да се изрисуват app.component.html (parent) и hero.component.html (child),
+следователно app.component.html няма да бъде Destroy-нат, а само home.component.html защото той вече не трябва да се рисува на новия path-->
 
 <app-table [dataSource]="dataForTable"></app-table>
 <br>
 <app-table1 [dataSource]="dataForTable1"></app-table1>
 
-<router-outlet></router-outlet>
 <hr>
 <app-messages></app-messages>

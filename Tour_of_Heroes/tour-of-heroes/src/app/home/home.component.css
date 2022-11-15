@@ -11,11 +11,28 @@ h1 {
     color: #3d3d3d;
     border-radius: 4px;
   }
-  
+
   nav a:hover {
     color: white;
     background-color: #42545C;
   }
   nav a:active {
     background-color: black;
+  }
+
+  p {
+    background-color: green;
+  }
+
+  .border {
+    border: 5px solid purple;
+  }
+
+  .white {
+    color: white;
+    font-weight: bold;
+  }
+
+  .big{
+     font-size: 25px;
   }

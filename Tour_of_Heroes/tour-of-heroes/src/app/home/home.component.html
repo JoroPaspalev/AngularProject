@@ -1,0 +1,12 @@
+<div class="border">
+
+  <p>HOME COMPONENT</p>
+
+  <!-- | async pipe - все едно прави на Observable .subscribe() и подава respone в {{}}
+  Когато се унижощи (destroy) този компонент | async pipe-а автоматично unsubscribe()-ва този Observable за да няма memory leak.
+  т.е. не е нужно да използвам метода onDestroy() и вътре в него да unsubscrib-вам supscription  -->
+  <p class="white">Interval: <span class="big"> {{intervalObservable$ | async}} </span> </p>
+
+  <app-child-one></app-child-one>
+
+</div>

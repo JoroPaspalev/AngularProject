@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { combineLatest, interval, Observable, of, timer } from 'rxjs';
 import { User } from './components/table/table.component';
 import { HeroService } from './hero.service';
@@ -9,7 +9,7 @@ import { take, timeout } from 'rxjs/operators';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'Tour of Heroes';
   dataForTable: User[] = [];
   dataForTable1: User[] = [];
@@ -38,7 +38,7 @@ export class AppComponent implements OnInit {
 
     this.setTimeoutMyFunc();
 
-
+    this.setInterval()
   }
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -46,6 +46,13 @@ export class AppComponent implements OnInit {
     // interval функцията ми връща Observable, който ми излъчва number стойности през 1000 milliseconds (1 sec) като започва от нула. те. 0,1,2,3...
     // този Observable e от тип infinite защото няма край, постоянно Emit-ва стойности
     return interval(1000);
+  }
+
+  public setInterval() {
+    // тази функция setInterval() не връща Observable. Тя просто извиква през някакъв интервал от време (2000 msec в случая) подадена функция
+    return setInterval(() => {
+      //console.log('I am from setInterval function');
+    }, 2000);
   }
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -85,15 +92,20 @@ export class AppComponent implements OnInit {
       this.heroService.getData(6)
     ])
       .subscribe(([response1, response2, response3]) => {
-        console.log(response1);
-        console.log(response2);
-        console.log(response3);
+        // console.log(response1);
+        // console.log(response2);
+        // console.log(response3);
         let [a, b, c] = response1;
         let [d, e, f] = response2;
         let [g, h, i] = response3;
 
         this.dataForTable1 = [a, b, c, d, e, f, ...response3];
-      })
+      });
+
+    this.heroService.getWeatherData()
+      .subscribe(data => {
+        console.log(data);
+    })
 
     // this.heroService.getData(1)
     //   .subscribe(data => {
@@ -102,6 +114,11 @@ export class AppComponent implements OnInit {
     //     let [a, b, c] = data;
     //     this.dataForTable1 = [a, b, c];
     //   });
+  }
+
+  ngOnDestroy(): void {
+    console.log('app.component was DESTROYED');
+    alert('app.component was DESTROYED');
   }
 
 }

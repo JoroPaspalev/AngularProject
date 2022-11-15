@@ -15,6 +15,9 @@ import { HomeComponent } from './home/home.component';
 import { TableComponent } from './components/table/table.component';
 import { MatTableModule } from '@angular/material/table';
 import { Table1Component } from './components/table1/table1.component';
+import { JpComponent } from './components/jp/jp.component';
+import { ChildOneComponent } from './components/child-one/child-one.component';
+import { ChildTwoComponent } from './components/child-two/child-two.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { Table1Component } from './components/table1/table1.component';
     PageNotFoundComponent,
     HomeComponent,
     TableComponent,
-    Table1Component
+    Table1Component,
+    JpComponent,
+    ChildOneComponent,
+    ChildTwoComponent
   ],
   imports: [
     BrowserModule,
