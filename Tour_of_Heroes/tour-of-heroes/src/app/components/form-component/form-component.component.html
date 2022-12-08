@@ -1,0 +1,19 @@
+<form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+   <div class="row">
+    <div class="col-3">
+        <div class="form-group pb-3">
+            <label for="firstName">First Name</label>
+            <input type="text" class="form-control" id="firstName" formControlName="firstName">
+        </div>
+        <div class="form-group pb-3">
+            <label for="secondName">Second name</label>
+            <input type="text" class="form-control" id="secondName" formControlName="secondName">
+        </div>
+        <div class="form-group pb-3">
+            <label for="lastName">Third name</label>
+            <input type="text" class="form-control" id="lastName" formControlName="lastName">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+   </div>
+</form>

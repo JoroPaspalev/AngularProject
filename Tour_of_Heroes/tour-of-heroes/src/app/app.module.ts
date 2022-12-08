@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +19,7 @@ import { JpComponent } from './components/jp/jp.component';
 import { ChildOneComponent } from './components/child-one/child-one.component';
 import { ChildTwoComponent } from './components/child-two/child-two.component';
 import { WithLatestFromComponent } from './components/with-latest-from/with-latest-from.component';
+import { FormComponentComponent } from './components/form-component/form-component.component';
 
 @NgModule({
   declarations: [
@@ -34,12 +35,14 @@ import { WithLatestFromComponent } from './components/with-latest-from/with-late
     JpComponent,
     ChildOneComponent,
     ChildTwoComponent,
-    WithLatestFromComponent
+    WithLatestFromComponent,
+    FormComponentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     MatTableModule
   ],
