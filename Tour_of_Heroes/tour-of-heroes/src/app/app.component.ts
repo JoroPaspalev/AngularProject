@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { combineLatest, interval, Observable, of, timer } from 'rxjs';
+import { combineLatest, from, interval, Observable, of, range, timer } from 'rxjs';
 import { User } from './components/table/table.component';
 import { HeroService } from './hero.service';
 import { take, timeout } from 'rxjs/operators';
@@ -38,7 +38,16 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this.setTimeoutMyFunc();
 
-    this.setInterval()
+    this.setInterval();
+
+    this.getTimer()
+      .subscribe(value => console.log('Аз излъчвам една единствена стойност (нула) след определено време (4000 msec): ' + value));
+
+    this.getRange()
+      .subscribe(result => console.log('Незабавно изпращане на range стойностите: ' + result));
+
+    this.getFrom()
+      .subscribe(value => console.log('Current value that came from() func: ' + value));
   }
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -70,6 +79,42 @@ export class AppComponent implements OnInit, OnDestroy {
         this.timeoutData = data1
       });
   }
+
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // виж снимка timer.png там където се намира компонента app.component.ts
+  private getTimer() {
+    // timer() функцията връща Observable, който излъчва една единствена стойност - нула след определено време - в случая е на 4тата секунда
+    return timer(4000);
+  }
+
+  private getTimerWithDelay() {
+    // timer(param1, param2) - връща Observable, който ще излъчи първата си стойност на седмата секунда, а след това всяка следваща след интервал от 2сек
+    return timer(7000, 2000);
+  }
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  private getRange() {
+    // незабавно започва да излъчва стойности като в случая започва от 3 и излъчва 8бр. стойности т.е. 3,4,5,6,7,8,9,10
+    return range(3, 8);
+  }
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  private getFrom() {
+    // Тази функция from() връща Observable. За параметър взема нещо което може да се итерира (напр. Array) разбива го на отделни
+    // стойности и започва да ги изпраща стойност след стойност, а не целия масив като една единствена стойност
+    // return from([1, 2, 3, 4, 5, 6]);
+    // return from(['Ivan', 'Petur', 'Minko', 'Ganka', 'Ani'])
+    return from('aabbccddeeff123456789');
+  }
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
 
   private setTimeoutMyFunc() {
     // този setTimeout() функция казва: Извикай ми подадената функция след 3000 msec

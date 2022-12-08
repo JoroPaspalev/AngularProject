@@ -18,6 +18,7 @@ import { Table1Component } from './components/table1/table1.component';
 import { JpComponent } from './components/jp/jp.component';
 import { ChildOneComponent } from './components/child-one/child-one.component';
 import { ChildTwoComponent } from './components/child-two/child-two.component';
+import { WithLatestFromComponent } from './components/with-latest-from/with-latest-from.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ChildTwoComponent } from './components/child-two/child-two.component';
     Table1Component,
     JpComponent,
     ChildOneComponent,
-    ChildTwoComponent
+    ChildTwoComponent,
+    WithLatestFromComponent
   ],
   imports: [
     BrowserModule,
